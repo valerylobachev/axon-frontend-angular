@@ -1,0 +1,33 @@
+<div class="container-fluid">
+
+  <mat-card>
+    <mat-card-header>
+      <div class="row" style="width: 100%;">
+        <div class="col-xs-12 col-md-6 col-lg-4">
+        <h3 *ngIf="action == 'create'">{{ 'axon.bpm-config.schema.createTitle' | translate }}</h3>
+        <h3 *ngIf="action == 'view'">{{ 'axon.bpm-config.schema.viewTitle' | translate }}</h3>
+        <h3 *ngIf="action == 'update'">{{ 'axon.bpm-config.schema.updateTitle' | translate }}</h3>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-8">
+          <div class="button-line">
+
+            <div class="button-row1">
+              <button mat-stroked-button routerLink="../../../schemas">Schemas</button>
+              <button mat-flat-button *ngIf="action != 'view'" (click)="save()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-header>
+
+
+
+    <mat-card-content>
+
+      <axon-bpmn-edit #bpmnEdit [schema]="schema.schema"></axon-bpmn-edit>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

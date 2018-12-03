@@ -1,0 +1,9 @@
+$axon-nature-primary: mat-palette($mat-brown, 700, 300, 900);
+$axon-nature-accent: mat-palette($mat-deep-purple, 300);
+$axon-nature-warn: mat-palette($mat-red, 600);
+
+$axon-nature-theme: mat-light-theme(
+  $axon-nature-primary,
+  $axon-nature-accent,
+  $axon-nature-warn
+);

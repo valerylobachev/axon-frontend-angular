@@ -1,0 +1,9 @@
+$axon-black-primary: mat-palette($mat-grey, 700, 300, 900);
+$axon-black-accent: mat-palette($mat-blue-grey, 400);
+$axon-black-warn: mat-palette($mat-red, 500);
+
+$axon-black-theme: mat-dark-theme(
+  $axon-black-primary,
+  $axon-black-accent,
+  $axon-black-warn
+);

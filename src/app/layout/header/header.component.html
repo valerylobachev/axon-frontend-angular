@@ -1,0 +1,42 @@
+<mat-toolbar class="main-header" color="primary">
+  <button (click)="toggleSidenav.emit()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="app-title">
+    <strong>Annette Axon</strong>
+  </div>
+  <div fxFlex></div>
+
+  <span>
+        <mat-select [ngModel]="settings?.language"
+                    (selectionChange)="onLanguageSelect($event)">
+          <mat-option *ngFor="let l of languages" [value]="l">
+            {{ l.toUpperCase() }}
+          </mat-option>
+        </mat-select>
+  </span>
+
+  <button *ngIf="isAuthenticated"
+          mat-button
+          [matMenuTriggerFor]="toolbarUserMenu">
+    <!--<mat-icon>person</mat-icon>-->
+    <mat-icon fontSet="fas" fontIcon="fa-user-circle"></mat-icon>
+    &nbsp; {{kcProfile?.firstName}} {{kcProfile?.lastName}}
+  </button>
+  <mat-menu #toolbarUserMenu="matMenu">
+    <button mat-menu-item (click)="onProfileClick()">
+      <mat-icon fontSet="fas" fontIcon="fa-user"></mat-icon>
+      <span>{{ 'axon.menu.profile' | translate }}</span>
+    </button>
+    <button mat-menu-item routerLink="/settings">
+      <mat-icon fontSet="fas" fontIcon="fa-cog"></mat-icon>
+      <span>{{ 'axon.menu.settings' | translate }}</span>
+    </button>
+    <button mat-menu-item (click)="onLogoutClick()">
+      <mat-icon fontSet="fas" fontIcon="fa-power-off"></mat-icon>
+      <span>{{ 'axon.menu.logout' | translate }}</span>
+    </button>
+  </mat-menu>
+
+
+</mat-toolbar>

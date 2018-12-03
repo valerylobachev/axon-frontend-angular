@@ -1,0 +1,5 @@
+$axon-primary: mat-palette($mat-indigo, 800, 300, 900);
+$axon-accent: mat-palette($mat-light-blue);
+$axon-warn: mat-palette($mat-pink, 600);
+
+$axon-theme: mat-light-theme($axon-primary, $axon-accent, $axon-warn);

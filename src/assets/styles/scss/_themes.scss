@@ -1,0 +1,55 @@
+@import 'themes/default-theme';
+@import 'themes/light-theme';
+@import 'themes/black-theme';
+@import 'themes/nature-theme';
+
+@mixin axon-styles-reset-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+
+  /*a {
+    color: mat-color($foreground, text);
+
+    &:hover {
+      color: mat-color($accent);
+    }
+  }*/
+
+  code {
+    color: mat-color($accent, lighter-contrast);
+    background-color: mat-color($accent, lighter);
+  }
+}
+
+@mixin custom-components-theme($theme) {
+  @include axon-styles-reset-theme($theme);
+  //@include axon-app-component-theme($theme);
+  //@include axon-about-component-theme($theme);
+  //@include axon-big-input-component-theme($theme);
+  //@include axon-todos-component-theme($theme);
+  //@include axon-stock-market-component-theme($theme);
+  //@include axon-parent-component-theme($theme);
+  //@include axon-child-component-theme($theme);
+  //@include axon-examples-component-theme($theme);
+}
+
+.default-theme {
+  @include angular-material-theme($axon-theme);
+  @include custom-components-theme($axon-theme);
+}
+
+.light-theme {
+  @include angular-material-theme($axon-light-theme);
+  @include custom-components-theme($axon-light-theme);
+}
+
+.black-theme {
+  @include angular-material-theme($axon-black-theme);
+  @include custom-components-theme($axon-black-theme);
+}
+
+.nature-theme {
+  @include angular-material-theme($axon-nature-theme);
+  @include custom-components-theme($axon-nature-theme);
+}

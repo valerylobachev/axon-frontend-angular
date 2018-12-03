@@ -1,0 +1,40 @@
+mat-toolbar {
+  &.main-header {
+    padding: 0 8px;
+    position: relative;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    z-index: 9;
+
+    .app-title {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: auto 0;
+      line-height: 50px;
+      padding: 0 64px 0 16px;
+    }
+  }
+}
+
+@media ($mat-xsmall) and (orientation: portrait) {
+  mat-toolbar {
+    &.main-header {
+      .app-title {
+        padding: 0 16px 0 16px;
+      }
+    }
+  }
+}
+
+[dir='rtl'] {
+  .main-header {
+    .app-title {
+      padding: 0 16px 0 64px;
+    }
+  }
+}

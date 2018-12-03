@@ -1,0 +1,91 @@
+<mat-card class="mt-10">
+  <mat-card-header>
+    <h3>{{ 'axon.bpm-config.schemas' | translate }}</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxLayout="row" fxLayoutGap="20px grid" fxLayoutAlign="space-between center">
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Filter" [value]="filter" [formControl]="filterControl">
+          <button mat-button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+            <mat-icon fontSet="fas" fontIcon="fa-times"></mat-icon>
+          </button>
+          <button mat-button matSuffix mat-icon-button aria-label="Refresh"
+                  (click)="$event.stopPropagation(); refresh()">
+            <mat-icon fontSet="fas" fontIcon="fa-sync"></mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+
+      <div>
+        <a mat-stroked-button color="primary" routerLink="../schema/create/new">Create</a>
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="loadingFailure" >
+        {{ loadingFailure.code | translate: loadingFailure }}
+      <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>-->
+    </div>
+
+    <table *ngIf="!loadingFailure" mat-table [dataSource]="schemaDataSource" matSort >
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let element">{{element.description}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="notation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Notation</th>
+        <td mat-cell *matCellDef="let element"> {{element.notation}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="button-row">
+            <a mat-icon-button
+               [routerLink]="['../schema/view', element.id]">
+              <mat-icon fontSet="fas" fontIcon="fa-eye" style="color: green;"></mat-icon>
+            </a>
+            <a mat-icon-button
+               [routerLink]="['../schema/update', element.id]">
+              <mat-icon fontSet="fas" fontIcon="fa-edit" style="color: blue;" ></mat-icon>
+            </a>
+            <button mat-icon-button>
+              <mat-icon fontSet="fas" fontIcon="fa-upload" style="color: darkviolet"></mat-icon>
+            </button>
+
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #appMenu="matMenu">
+              <button mat-menu-item color="warn"
+                      (click)="delete(element.id)">
+                <mat-icon fontSet="fas" fontIcon="fa-trash" color="warn"></mat-icon>
+                Delete
+              </button>
+            </mat-menu>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+   <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
+
+  </mat-card-content>
+</mat-card>

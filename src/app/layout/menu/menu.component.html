@@ -1,0 +1,45 @@
+<mat-nav-list appAccordion class="navigation">
+  <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems" group="{{menuitem.state}}">
+    <a appAccordionToggle class="relative" [routerLink]="[menuitem.state]" *ngIf="menuitem.type === 'link'">
+      <mat-icon *ngIf="menuitem.fontSet" [fontSet]="menuitem.fontSet" [fontIcon]="menuitem.icon"></mat-icon>
+      <mat-icon *ngIf="!menuitem.fontSet" >{{ menuitem.icon }}</mat-icon>
+      <span>{{ menuitem.name | translate }}</span>
+      <span fxFlex></span>
+      <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+    </a>
+    <a appAccordionToggle class="relative" href="{{menuitem.state}}" *ngIf="menuitem.type === 'extLink'">
+      <mat-icon *ngIf="menuitem.fontSet" [fontSet]="menuitem.fontSet" [fontIcon]="menuitem.icon"></mat-icon>
+      <mat-icon *ngIf="!menuitem.fontSet" >{{ menuitem.icon }}</mat-icon>
+      <span>{{ menuitem.name | translate }}</span>
+      <span fxFlex></span>
+      <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+    </a>
+    <a appAccordionToggle class="relative" href="{{menuitem.state}}" target="_blank"
+       *ngIf="menuitem.type === 'extTabLink'">
+      <mat-icon *ngIf="menuitem.fontSet" [fontSet]="menuitem.fontSet" [fontIcon]="menuitem.icon"></mat-icon>
+      <mat-icon *ngIf="!menuitem.fontSet" >{{ menuitem.icon }}</mat-icon>
+      <span>{{ menuitem.name | translate }}</span>
+      <span fxFlex></span>
+      <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+    </a>
+    <a appAccordionToggle class="relative" href="javascript:;" *ngIf="menuitem.type === 'sub'">
+      <mat-icon *ngIf="menuitem.fontSet" [fontSet]="menuitem.fontSet" [fontIcon]="menuitem.icon"></mat-icon>
+      <mat-icon *ngIf="!menuitem.fontSet" >{{ menuitem.icon }}</mat-icon>
+      <span>{{ menuitem.name | translate }}</span>
+      <span fxFlex></span>
+      <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+      <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
+    </a>
+    <!--<mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
+      <mat-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open">
+        <a [routerLink]="[childitem.state]" class="relative">
+          <mat-icon>{{ menuitem.icon }}</mat-icon>
+          <span>{{ childitem.name | translate }}</span>
+        </a>
+       &lt;!&ndash; <span fxFlex></span>&ndash;&gt;
+      </mat-list-item>
+    </mat-nav-list>-->
+    <app-menu class="sub-menu" *ngIf="menuitem.type === 'sub'" [menuItems]="menuitem.children"></app-menu>
+
+</mat-list-item>
+</mat-nav-list>
