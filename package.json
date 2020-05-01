@@ -21,7 +21,9 @@
     "analyze": "npm run clean && npm run build:prod -- --stats-json && webpack-bundle-analyzer ./dist/stats.json",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate && node .all-contributors-html.js",
-    "contributors:check": "all-contributors check"
+    "contributors:check": "all-contributors check",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -66,7 +68,8 @@
     "rxjs": "6.3.2",
     "uuid": "^3.1.0",
     "web-animations-js": "^2.2.5",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.1",
@@ -98,5 +101,6 @@
     "rimraf": "^2.6.2",
     "standard-version": "^4.2.0",
     "webpack-bundle-analyzer": "^2.13.1"
-  }
+  },
+  "snyk": true
 }
