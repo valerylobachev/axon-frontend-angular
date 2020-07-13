@@ -96,7 +96,7 @@
     "ngrx-store-freeze": "^0.2.4",
     "prettier": "^1.7.4",
     "rimraf": "^2.6.2",
-    "standard-version": "^4.2.0",
+    "standard-version": "^8.0.1",
     "webpack-bundle-analyzer": "^2.13.1"
   }
 }
